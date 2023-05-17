@@ -6,15 +6,18 @@ import { CustomPasswordInput } from '../../components/custom-password-input';
 import { CustomButton } from '../../components/custom-button';
 import { Link, useNavigate } from 'react-router-dom';
 import { Paths } from '../../paths';
-import { UserData, useRegisterMutation } from '../../app/services/auth';
+import { useRegisterMutation } from '../../app/services/auth';
 import { isErrorWithMessage } from '../../utils/is-error-with-message';
+import { User } from '@prisma/client';
+
+type RegisterData = Omit<User, 'id'> & { confirmPassword: string }
 
 export const Register = () => {
 	const navigate = useNavigate()
 	const [registerUser] = useRegisterMutation();
 	const [error, setError] = useState('');
 
-	const register = async (data: UserData) => {
+	const register = async (data: RegisterData) => {
 		try {
 			await registerUser(data).unwrap()
 			navigate('/')
