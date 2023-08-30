@@ -11,7 +11,7 @@ type Props = {
 	shape?: 'default' | 'circle' | 'round' | undefined
 	icon?: React.ReactNode
 }
-export const CustomButton: FC<Props> = ({
+   export const CustomButton: FC<Props> = ({
 																					children,
 																					htmlType = 'button',
 																					type,
